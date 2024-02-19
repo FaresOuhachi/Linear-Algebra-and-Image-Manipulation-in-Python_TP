@@ -66,6 +66,7 @@ def convert_to_grey_scale(image):
 
     ### VOTRE CODE ICI - DEBUT
     out = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+
     ### VOTRE CODE ICI - FIN
 
     return out
@@ -85,12 +86,12 @@ def rgb_exclusion(image, channel):
     out = None
 
     ### VOTRE CODE ICI - DEBUT
-    out = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-    if channel == 'R':
+    out = image.copy()
+    if channel == 'B':
         out[:, :, 0] = 0
     elif channel == 'G':
         out[:, :, 1] = 0
-    elif channel == 'B':
+    elif channel == 'R':
         out[:, :, 2] = 0
     else:
         assert ValueError("Value doesn't exist in this space !!!")
@@ -114,11 +115,11 @@ def lab_decomposition(image, channel):
     ### VOTRE CODE ICI - DEBUT
     out = cv2.cvtColor(image,cv2.COLOR_BGR2LAB)
     if channel == 'L':
-        out = out[:, :, 0]
+        return out[:, :, 0]
     elif channel == 'A':
-        out = out[:, :, 1]
+        return out[:, :, 1]
     elif channel == 'B':
-        out = out[:, :, 2]
+        return out[:, :, 2]
     else:
         assert ValueError("Value doesn't exist in this space !!!")
     ### VOTRE CODE ICI - FIN
@@ -141,11 +142,11 @@ def hsv_decomposition(image, channel='H'):
     ### VOTRE CODE ICI - DEBUT
     out = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     if channel == 'H':
-        out = out[:, :, 0]
+        return out[:, :, 0]
     elif channel == 'S':
-        out = out[:, :, 1]
+        return out[:, :, 1]
     elif channel == 'V':
-        out = out[:, :, 2]
+        return out[:, :, 2]
     else:
         assert ValueError("Value doesn't exist in this space !!!")
     ### VOTRE CODE ICI - FIN
