@@ -20,9 +20,10 @@ def load(image_path):
 
     ### VOTRE CODE ICI - DEBUT
     # Utilisez cv2.imread - le format RGB doit être retourné
-    out = cv2.imread(cv2.samples.findFile(image_path))
+    out = cv2.imread(image_path)
     if out is None:
         raise AssertionError("File doesn't exist!!!")
+    out = cv2.cvtColor(out, cv2.COLOR_BGR2RGB)
     ### VOTRE CODE ICI - FIN
     # Let's convert the image to be between the correct range.
     out = out.astype(np.float32) / 255
@@ -65,8 +66,7 @@ def convert_to_grey_scale(image):
     out = None
 
     ### VOTRE CODE ICI - DEBUT
-    out = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-
+    out = cv2.cvtColor(image,cv2.COLOR_RGB2GRAY)
     ### VOTRE CODE ICI - FIN
 
     return out
@@ -87,15 +87,16 @@ def rgb_exclusion(image, channel):
 
     ### VOTRE CODE ICI - DEBUT
     out = image.copy()
-    if channel == 'B':
+    if channel == 'R':
         out[:, :, 0] = 0
     elif channel == 'G':
         out[:, :, 1] = 0
-    elif channel == 'R':
+    elif channel == 'B':
         out[:, :, 2] = 0
     else:
         assert ValueError("Value doesn't exist in this space !!!")
     ### VOTRE CODE ICI - FIN
+    print(out)
     return out
 
 
@@ -113,7 +114,7 @@ def lab_decomposition(image, channel):
     out = None
 
     ### VOTRE CODE ICI - DEBUT
-    out = cv2.cvtColor(image,cv2.COLOR_BGR2LAB)
+    out = cv2.cvtColor(image,cv2.COLOR_RGB2LAB)
     if channel == 'L':
         return out[:, :, 0]
     elif channel == 'A':
@@ -123,7 +124,6 @@ def lab_decomposition(image, channel):
     else:
         assert ValueError("Value doesn't exist in this space !!!")
     ### VOTRE CODE ICI - FIN
-
     return out
 
 
@@ -140,7 +140,7 @@ def hsv_decomposition(image, channel='H'):
     out = None
 
     ### VOTRE CODE ICI - DEBUT
-    out = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    out = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
     if channel == 'H':
         return out[:, :, 0]
     elif channel == 'S':
