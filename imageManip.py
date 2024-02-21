@@ -86,7 +86,7 @@ def rgb_exclusion(image, channel):
     out = None
 
     ### VOTRE CODE ICI - DEBUT
-    out = image.copy()
+    out = np.copy(image)
     if channel == 'R':
         out[:, :, 0] = 0
     elif channel == 'G':
@@ -96,7 +96,6 @@ def rgb_exclusion(image, channel):
     else:
         assert ValueError("Value doesn't exist in this space !!!")
     ### VOTRE CODE ICI - FIN
-    print(out)
     return out
 
 

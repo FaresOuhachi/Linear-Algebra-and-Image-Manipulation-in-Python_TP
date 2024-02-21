@@ -129,8 +129,7 @@ def get_eigen_values_and_vectors(M, k):
     eigenvectors = []
     ### VOTRE CODE ICI - DEBUT
     w,v = eigen_decomp(M)
-    w = np.abs(w)
-    k_indexes = np.argsort(w)[::-1][:k]
+    k_indexes = np.argsort(np.abs(w))[::-1][:k]
     eigenvalues = w[k_indexes]
     eigenvectors = v[:,k_indexes].T
     ### VOTRE CODE ICI - FIN
